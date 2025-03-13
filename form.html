@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+
+<style>
+/* Estilos Globais */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+body {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+:root {
+  --cinza--claro: rgba(211, 211, 211, 1);
+  --cinza--escuro: rgba(77, 77, 77, 1);
+  --red: #E80537;
+}
+</style>
+<style>
+/* Formulário ↓ */
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-sizing: border-box;
+  border: 1px solid var(--cinza--claro);
+  width: 400px;
+  border-radius: 20px;
+  border-width: 1px;
+  gap: 10px;
+  padding: 30px;
+  z-index: 1;
+}
+.form__title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 120%;
+  text-align: center;
+  vertical-align: middle;
+  margin-bottom: 10px;
+}
+.form__ctn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.form__grafismo {
+  position: absolute;
+  height: 100%;
+  left: 100px;
+  max-height: 600px;
+}
+.form__input-container {
+  height: 50px;
+  position: relative;
+  width: 100%;
+}
+.form__input, .form__select {
+  background-color: white;
+  border-radius: 12px;
+  border: none;
+  box-sizing: border-box;
+  color: var(--cinza--escuro);
+  font-size: 16px;
+  height: 48px;
+  padding: 4px 20px 0;
+  width: 100%;
+  outline: 1px solid var(--cinza--claro);
+  transition: .5s;
+}
+.form__select {
+  appearance: none;
+  cursor: pointer;
+}
+.select--1 {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.select--1::after {
+  content: '';
+  background-image: url('https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/0bc96ced-05d8-4dca-9ac2-24f370718e9c.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  color: rgb(158, 158, 158);
+  width: 12px;
+  height: 12px;
+  right: 24px;
+  z-index: 2;
+}
+.form__cut {
+  background-color: white;
+  border-radius: 6px;
+  height: 10px;
+  left: 14px;
+  position: absolute;
+  top: -12px;
+  transform: translateY(0);
+  transition: transform 200ms;
+  width: 76px;
+}
+.form__cut-short {
+  width: 50px;
+}
+.form__input:focus ~ .form__cut,
+.form__input:not(:placeholder-shown) ~ .form__cut {
+  transform: translateY(8px);
+}
+.form__select:valid ~ .form__cut {
+  transform: translateY(8px);
+}
+.form__placeholder {
+  color: gray;
+  font-family: sans-serif;
+  line-height: 14px;
+  pointer-events: none;
+  position: absolute;
+  transform-origin: 0 50%;
+  transition: transform 200ms, color 200ms;
+  left: 20px;
+  top: 17px;
+}
+.form__input:focus ~ .form__placeholder,
+.form__input:not(:placeholder-shown) ~ .form__placeholder {
+  transform: translateY(-22px) translateX(-2px) scale(0.75);
+}
+/* .form__select:focus ~ .form__placeholder, */
+.form__select:valid ~ .form__placeholder {
+  transform: translateY(-22px) translateX(-2px) scale(0.75);
+}
+.form__input:not(:placeholder-shown) ~ .form__placeholder {
+  color: gray;
+}
+.form__input:focus{
+  outline: 1px solid black;
+  transition: .5s;
+}
+/* .form__input:focus ~ .form__placeholder {
+  color: var(--red);
+} */
+.form__submit {
+  background-color: var(--red);
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #eee;
+  cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 28px;
+  text-align: center;
+  width: 100%;
+  transition: .2s;
+}
+.form__submit:active {
+  transition: .2s;
+  background-color: #74031C;
+}
+.form__disclamer {
+  font-size: 10px;
+  color: #4D4D4D;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.input--1 .form__cut {
+  width: 122px;
+}
+.input--2 .form__cut {
+  width: 128px;
+}
+.input--3 .form__cut {
+  width: 214px;
+}
+.input--4 .form__cut {
+  width: 150px;
+}
+.input--5 .form__cut {
+  width: 226px;
+}
+/* Select */
+.select--1 .form__cut {
+  width: 126px;
+}
+.select--1 .form__placeholder {
+  top: 18px;
+}
+
+/*  */
+.form__error {
+  position: relative;
+  display: block;
+  color: var(--red);
+  font-size: 12px;
+  margin-top: 5px;
+  z-index: 2;
+} 
+
+</style>
+
+</head>
+<body>
+  <div class="form">
+    <p class="form__title">Baixe o material!</p>
+    <div class="form__ctn">
+
+      <div class="form__input-container input--1">
+        <input id="firstname" class="form__input" type="text" placeholder=" " />
+        <div class="form__cut"></div>
+        <label for="firstname" class="form__placeholder">Digite aqui seu nome</label>
+      </div>
+
+      <div class="form__input-container input--2">
+        <input id="lastname" class="form__input" type="text" placeholder=" " />
+        <div class="form__cut"></div>
+        <label for="lastname" class="form__placeholder">Digite aqui seu e-mail</label>
+      </div>
+
+      <div class="form__input-container select--1">
+        <select class="form__select" name="" id="selectDiretor" required>
+          <option value="" selected></option> <!-- Opção vazia -->
+          <option value="socio">Sócio / Diretor</option>
+          <option value="gerente">Gerente / Coordenador(a)</option>
+          <option value="analista">Analista</option>
+          <option value="assistem">Assistente</option>
+          <option value="estagiarios">Estagiário</option>
+          <option value="outros">Outros</option>
+        </select>
+        <div class="form__cut"></div>
+        <label for="selectDiretor" class="form__placeholder">Selecione a área que você trabalha</label>
+      </div>
+      
+      <div class="form__input-container input--3">
+        <input id="numero" class="form__input" type="text" placeholder=" " />
+        <div class="form__cut form__cut-short"></div>
+        <label for="numero" class="form__placeholder">Digite aqui o seu número para contato</label>
+      </div>
+
+      <div class="form__input-container input--4">
+        <input id="empresa" class="form__input" type="text" placeholder=" " />
+        <div class="form__cut form__cut-short"></div>
+        <label for="empresa" class="form__placeholder">Digite aqui a sua empresa</label>
+      </div>
+
+      <div class="form__input-container input--5">
+        <input id="funcionarios" class="form__input" type="text" placeholder=" " />
+        <div class="form__cut form__cut-short"></div>
+        <label for="funcionarios" class="form__placeholder">Quantos funcionários tem sua empresa?</label>
+      </div>
+
+    </div>
+    <button type="text" class="form__submit">Baixar material</button>
+    <p class="form__disclamer">Ao continuar, esteja ciente da política de privacidade da Caju.</p>
+  </div>
+</body>
+<script>
+  
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector(".form");
+  const inputs = document.querySelectorAll(".form__input, .form__select");
+  const submitButton = document.querySelector(".form__submit");
+
+  // Criar elementos de erro para cada campo
+  inputs.forEach(input => {
+    const errorElement = document.createElement("p");
+    errorElement.classList.add("form__error");
+    // errorElement.style.display = "none";
+    input.parentElement.appendChild(errorElement);
+  });
+
+  submitButton.addEventListener("click", (event) => {
+    let isValid = true;
+
+    inputs.forEach(input => {
+      const errorElement = input.parentElement.querySelector(".form__error");
+      errorElement.style.display = "none";
+      errorElement.textContent = "";
+
+      if (input.value.trim() === "") {
+        errorElement.textContent = "Este campo é obrigatório.";
+        errorElement.style.display = "block";
+        isValid = false;
+      } else if (input.id === "lastname" && !validateEmail(input.value)) {
+        errorElement.textContent = "Digite um e-mail válido.";
+        errorElement.style.display = "block";
+        isValid = false;
+      } else if (input.id === "numero" && !/^\d+$/.test(input.value)) {
+        errorElement.textContent = "Digite apenas números.";
+        errorElement.style.display = "block";
+        isValid = false;
+      } else if (input.id === "funcionarios" && !/^\d+$/.test(input.value)) {
+        errorElement.textContent = "Digite apenas números.";
+        errorElement.style.display = "block";
+        isValid = false;
+      }
+
+      input.addEventListener('click', () => {
+        errorElement.style.display = 'none'
+      })
+
+    });
+
+    if (!isValid) {
+      event.preventDefault();
+    }
+  });
+
+  const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+});
+</script>
+
+</html>
