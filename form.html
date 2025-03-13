@@ -181,10 +181,10 @@ body {
 .form__input--3 .form__cut {
   width: 214px;
 }
-.form__input--4 .form__cut {
+.input--4 .form__cut {
   width: 150px;
 }
-.form__input--5 .form__cut {
+.input--5 .form__cut {
   width: 226px;
 }
 /* Select */
@@ -209,10 +209,10 @@ body {
   margin-top: 8px;
   z-index: 2;
 } 
-.form__error .form__input, .form__error .form__select {
+.form__error-err .form__input, .form__error-err .form__select {
   outline: 1px solid var(--roxo);
 }
-.form__error .form__placeholder {
+.form__error-err .form__placeholder {
   color: var(--roxo);
 }
 </style>
@@ -267,13 +267,13 @@ body {
           <label for="valNumero" class="form__placeholder">Digite aqui o seu número para contato</label>
         </div>
 
-        <div class="form__inputCtn form__input--4">
+        <div class="form__inputCtn input--4">
           <input id="valEmpresa" class="form__input" type="text" placeholder="" />
           <div class="form__cut form__cut-short"></div>
           <label for="valEmpresa" class="form__placeholder">Digite aqui a sua empresa</label>
         </div>
 
-        <div class="form__inputCtn form__input--5">
+        <div class="form__inputCtn input--5">
           <input id="valFuncionarios" class="form__input" type="number" placeholder="" />
           <div class="form__cut form__cut-short"></div>
           <label for="valFuncionarios" class="form__placeholder">Quantos funcionários tem sua empresa?</label>
@@ -340,51 +340,53 @@ const funcDOMContentLoaded = (e) => {
       errorElement.textContent = "";
         
       const container = input.closest(".form__inputCtn");
+      console.log('container', container);
+
 
       if (input.id === "valName" && input.value == '') {
-        container.classList.add('form__error')
+        container.classList.add('form__error-err')
         errorElement.textContent = "* Nome é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
       } else if (input.id === "valEmail" && !validateEmail(input.value)) { // input
-        container.classList.add('form__error')
+        container.classList.add('form__error-err')
         errorElement.textContent = "* Nome é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
       } else if (input.id === "valTrabalho" && input.value == '') { // Seletor
-        container.classList.add('form__error')
+        container.classList.add('form__error-err')
         errorElement.textContent = "* Seu cargo é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
       } else if (input.id === "valCargo"  && input.value == '') { // Seletor
-        container.classList.add('form__error')
+        container.classList.add('form__error-err')
         errorElement.textContent = "* Nome é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
       } else if (input.id === "valNumero" && validateTelefone(input.value)) { // input
-        container.classList.add('form__error')
+        container.classList.add('form__error-err')
         errorElement.textContent = "* Nome é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
       } else if (input.id === "valEmpresa" && input.value == '') { // input
-        container.classList.add('form__error')
+        container.classList.add('form__error-err')
         errorElement.textContent = "* Nome é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
       } else if (input.id === "valFuncionarios" && input.value == '') { // input
-        container.classList.add('form__error')
+        container.classList.add('form__error-err')
         errorElement.textContent = "* Nome é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
       } else if (input.id === "valDesafio" && input.value == '') { // Seletor
-        container.classList.add('form__error')
+        container.classList.add('form__error-err')
         errorElement.textContent = "* Seu cargo é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
       }
 
       input.addEventListener('click', () => {
-        container.classList.remove('form__error')
+        container.classList.remove('form__error-err')
         errorElement.style.display = 'none'
       }) // Remove o erro ao clicar novamente no input
 
