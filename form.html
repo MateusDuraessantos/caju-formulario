@@ -25,6 +25,7 @@ body {
   --cinza--claro: rgba(211, 211, 211, 1);
   --cinza--escuro: rgba(77, 77, 77, 1);
   --red: #E80537;
+  --roxo: rgba(165, 66, 229, 1);
 }
 </style>
 <style>
@@ -61,8 +62,7 @@ body {
   left: 100px;
   max-height: 600px;
 }
-.form__input-container {
-  height: 50px;
+.form__inputCtn {
   position: relative;
   width: 100%;
 }
@@ -72,7 +72,7 @@ body {
   border: none;
   box-sizing: border-box;
   color: var(--cinza--escuro);
-  font-size: 16px;
+  font-size: 14px;
   height: 48px;
   padding: 4px 20px 0;
   width: 100%;
@@ -84,9 +84,9 @@ body {
   cursor: pointer;
 }
 .select--1 {
-  display: flex;
-  align-items: center;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .select--1::after {
   content: '';
@@ -99,6 +99,7 @@ body {
   width: 12px;
   height: 12px;
   right: 24px;
+  top: 18px;
   z-index: 2;
 }
 .form__cut {
@@ -137,7 +138,6 @@ body {
 .form__input:not(:placeholder-shown) ~ .form__placeholder {
   transform: translateY(-22px) translateX(-2px) scale(0.75);
 }
-/* .form__select:focus ~ .form__placeholder, */
 .form__select:valid ~ .form__placeholder {
   transform: translateY(-22px) translateX(-2px) scale(0.75);
 }
@@ -148,9 +148,6 @@ body {
   outline: 1px solid black;
   transition: .5s;
 }
-/* .form__input:focus ~ .form__placeholder {
-  color: var(--red);
-} */
 .form__submit {
   background-color: var(--red);
   border-radius: 12px;
@@ -158,9 +155,9 @@ body {
   box-sizing: border-box;
   color: #eee;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
   height: 50px;
-  margin-top: 28px;
+  margin-top: 4px;
   text-align: center;
   width: 100%;
   transition: .2s;
@@ -175,7 +172,6 @@ body {
   text-align: center;
   margin-top: 4px;
 }
-
 .input--1 .form__cut {
   width: 122px;
 }
@@ -193,22 +189,32 @@ body {
 }
 /* Select */
 .select--1 .form__cut {
-  width: 126px;
+  width: 198px;
+}
+.select--2 .form__cut {
+  width: 128px;
+}
+.select--3 .form__cut {
+  width: 168px;
 }
 .select--1 .form__placeholder {
   top: 18px;
 }
-
 /*  */
 .form__error {
   position: relative;
   display: block;
-  color: var(--red);
+  color: var(--roxo);
   font-size: 12px;
-  margin-top: 5px;
+  margin-top: 8px;
   z-index: 2;
 } 
-
+.error .form__input, .error .form__select {
+  outline: 1px solid var(--roxo);
+}
+.error .form__placeholder {
+  color: var(--roxo);
+}
 </style>
 
 </head>
@@ -217,49 +223,73 @@ body {
     <p class="form__title">Baixe o material!</p>
     <div class="form__ctn">
 
-      <div class="form__input-container input--1">
-        <input id="firstname" class="form__input" type="text" placeholder=" " />
-        <div class="form__cut"></div>
-        <label for="firstname" class="form__placeholder">Digite aqui seu nome</label>
-      </div>
+        <div class="form__inputCtn input--1">
+          <input id="valName" class="form__input" type="text" placeholder="" />
+          <div class="form__cut"></div>
+          <label for="valName" class="form__placeholder">Digite aqui seu nome</label>
+        </div>
 
-      <div class="form__input-container input--2">
-        <input id="lastname" class="form__input" type="text" placeholder=" " />
-        <div class="form__cut"></div>
-        <label for="lastname" class="form__placeholder">Digite aqui seu e-mail</label>
-      </div>
+        <div class="form__inputCtn input--2">
+          <input id="valEmail" class="form__input" type="text" placeholder="" />
+          <div class="form__cut"></div>
+          <label for="valEmail" class="form__placeholder">Digite aqui seu e-mail</label>
+        </div>
 
-      <div class="form__input-container select--1">
-        <select class="form__select" name="" id="selectDiretor" required>
-          <option value="" selected></option> <!-- Opção vazia -->
-          <option value="socio">Sócio / Diretor</option>
-          <option value="gerente">Gerente / Coordenador(a)</option>
-          <option value="analista">Analista</option>
-          <option value="assistem">Assistente</option>
-          <option value="estagiarios">Estagiário</option>
-          <option value="outros">Outros</option>
-        </select>
-        <div class="form__cut"></div>
-        <label for="selectDiretor" class="form__placeholder">Selecione a área que você trabalha</label>
-      </div>
+        <div class="form__inputCtn select--1">
+          <select id="valTrabalho" class="form__select" name="" required>
+            <option value="" selected disabled></option> <!-- Opção vazia -->
+            <option value="socio">Sócio / Diretor</option>
+            <option value="gerente">Gerente / Coordenador(a)</option>
+            <option value="analista">Analista</option>
+            <option value="assistem">Assistente</option>
+            <option value="estagiarios">Estagiário</option>
+            <option value="outros">Outros</option>
+          </select>
+          <div class="form__cut"></div>
+          <label for="valTrabalho" class="form__placeholder">Selecione a área que você trabalha</label>
+        </div>
+
+        <div class="form__inputCtn select--2">
+          <select id="valCargo" class="form__select" name="" required>
+            <option value="" selected disabled></option> <!-- Opção vazia -->
+            <option value="socio">Estagiário</option>
+            <option value="socio">Junior</option>
+            <option value="socio">Pleno</option>
+            <option value="socio">Senior</option>
+          </select>
+          <div class="form__cut"></div>
+          <label for="valCargo" class="form__placeholder">Selecione o seu cargo</label>
+        </div>
       
-      <div class="form__input-container input--3">
-        <input id="numero" class="form__input" type="text" placeholder=" " />
-        <div class="form__cut form__cut-short"></div>
-        <label for="numero" class="form__placeholder">Digite aqui o seu número para contato</label>
-      </div>
+        <div class="form__inputCtn input--3">
+          <input id="valNumero" class="form__input" type="text" placeholder="" />
+          <div class="form__cut form__cut-short"></div>
+          <label for="valNumero" class="form__placeholder">Digite aqui o seu número para contato</label>
+        </div>
 
-      <div class="form__input-container input--4">
-        <input id="empresa" class="form__input" type="text" placeholder=" " />
-        <div class="form__cut form__cut-short"></div>
-        <label for="empresa" class="form__placeholder">Digite aqui a sua empresa</label>
-      </div>
+        <div class="form__inputCtn input--4">
+          <input id="valEmpresa" class="form__input" type="text" placeholder="" />
+          <div class="form__cut form__cut-short"></div>
+          <label for="valEmpresa" class="form__placeholder">Digite aqui a sua empresa</label>
+        </div>
 
-      <div class="form__input-container input--5">
-        <input id="funcionarios" class="form__input" type="text" placeholder=" " />
-        <div class="form__cut form__cut-short"></div>
-        <label for="funcionarios" class="form__placeholder">Quantos funcionários tem sua empresa?</label>
-      </div>
+        <div class="form__inputCtn input--5">
+          <input id="valFuncionarios" class="form__input" type="number" placeholder="" />
+          <div class="form__cut form__cut-short"></div>
+          <label for="valFuncionarios" class="form__placeholder">Quantos funcionários tem sua empresa?</label>
+        </div>
+
+        <div class="form__inputCtn select--3">
+          <select id="valDesafio" class="form__select" name="" required>
+            <option value="" selected disabled></option> <!-- Opção vazia -->
+            <option value="socio">Estagiário</option>
+            <option value="socio">Junior</option>
+            <option value="socio">Pleno</option>
+            <option value="socio">Senior</option>
+          </select>
+          <div class="form__cut"></div>
+          <label for="valDesafio" class="form__placeholder">Selecione o seu maior desafio</label>
+        </div>
 
     </div>
     <button type="text" class="form__submit">Baixar material</button>
@@ -267,62 +297,118 @@ body {
   </div>
 </body>
 <script>
-  
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector(".form");
-  const inputs = document.querySelectorAll(".form__input, .form__select");
-  const submitButton = document.querySelector(".form__submit");
 
-  // Criar elementos de erro para cada campo
-  inputs.forEach(input => {
+const valName = (e) => {
+  e.currentTarget.value = e.currentTarget.value.replace(/[^a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]/g, '')
+}
+const valFuncionarios = (e) => {
+  let val = e.currentTarget.value.replace(/\D/g, '') // Remove tudo que não for número
+  val = val.replace(/\B(?=(\d{3})+(?!\d))/g, '.') // Adiciona pontos a cada três dígitos
+  e.currentTarget.value = val.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+}
+
+const valNumero = (e) => {
+  let val = e.currentTarget.value.replace(/\D/g, ''); 
+  if (val.length > 11) val = val.slice(0, 11); // Limita a 11 dígitos (formato máximo)
+  let formatado = '';
+  if (val.length > 0) formatado += `(${val.slice(0, 2)}`; // Adiciona o DDD
+  if (val.length >= 3) formatado += `) ${val.slice(2, 7)}`; // Adiciona a primeira parte
+  if (val.length >= 8) formatado += `-${val.slice(7, 11)}`; // Adiciona a segunda parte
+
+  e.currentTarget.value = formatado;
+}
+
+const funcDOMContentLoaded = (e) => {
+  const inputs = document.querySelectorAll(".form__input, .form__select");
+
+  inputs.forEach(input => { // Criar elementos de erro para cada campo
+    
     const errorElement = document.createElement("p");
     errorElement.classList.add("form__error");
-    // errorElement.style.display = "none";
+    errorElement.style.display = "none";
     input.parentElement.appendChild(errorElement);
   });
 
+  const submitButton = document.querySelector(".form__submit")
   submitButton.addEventListener("click", (event) => {
     let isValid = true;
 
     inputs.forEach(input => {
+      
       const errorElement = input.parentElement.querySelector(".form__error");
       errorElement.style.display = "none";
       errorElement.textContent = "";
+        
+      const container = input.closest(".form__inputCtn");
+      console.log('container', container);
 
-      if (input.value.trim() === "") {
-        errorElement.textContent = "Este campo é obrigatório.";
+
+      if (input.id === "valName" && input.value == '') {
+        container.classList.add('error')
+        errorElement.textContent = "* Nome é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
-      } else if (input.id === "lastname" && !validateEmail(input.value)) {
-        errorElement.textContent = "Digite um e-mail válido.";
+      } else if (input.id === "valEmail" && !validateEmail(input.value)) { // input
+        container.classList.add('error')
+        errorElement.textContent = "* Nome é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
-      } else if (input.id === "numero" && !/^\d+$/.test(input.value)) {
-        errorElement.textContent = "Digite apenas números.";
+      } else if (input.id === "valTrabalho" && input.value == '') { // Seletor
+        container.classList.add('error')
+        errorElement.textContent = "* Seu cargo é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
-      } else if (input.id === "funcionarios" && !/^\d+$/.test(input.value)) {
-        errorElement.textContent = "Digite apenas números.";
+      } else if (input.id === "valCargo"  && input.value == '') { // Seletor
+        container.classList.add('error')
+        errorElement.textContent = "* Nome é obrigatório";
+        errorElement.style.display = "block";
+        isValid = false;
+      } else if (input.id === "valNumero" && validateTelefone(input.value)) { // input
+        container.classList.add('error')
+        errorElement.textContent = "* Nome é obrigatório";
+        errorElement.style.display = "block";
+        isValid = false;
+      } else if (input.id === "valEmpresa" && input.value == '') { // input
+        container.classList.add('error')
+        errorElement.textContent = "* Nome é obrigatório";
+        errorElement.style.display = "block";
+        isValid = false;
+      } else if (input.id === "valFuncionarios" && input.value == '') { // input
+        container.classList.add('error')
+        errorElement.textContent = "* Nome é obrigatório";
+        errorElement.style.display = "block";
+        isValid = false;
+      } else if (input.id === "valDesafio" && input.value == '') { // Seletor
+        container.classList.add('error')
+        errorElement.textContent = "* Seu cargo é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
       }
 
       input.addEventListener('click', () => {
+        container.classList.remove('error')
         errorElement.style.display = 'none'
-      })
+      }) // Remove o erro ao clicar novamente no input
 
     });
 
-    if (!isValid) {
-      event.preventDefault();
-    }
+    if (!isValid) event.preventDefault();
   });
+}
 
-  const validateEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  }
+const validateTelefone = (telefone) => {
+  return !(telefone.replace(/\D/g, '').length == 11)
+}
 
-});
+const validateEmail = (email) => {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+document.getElementById("valName").addEventListener("input", valName);
+document.getElementById("valFuncionarios").addEventListener("input", valFuncionarios);
+document.getElementById("valNumero").addEventListener("input", valNumero);
+document.addEventListener("DOMContentLoaded", funcDOMContentLoaded);
+
 </script>
 
 </html>
