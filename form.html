@@ -83,12 +83,12 @@ body {
   appearance: none;
   cursor: pointer;
 }
-.select--1 {
+.form__select--1 {
   position: relative;
   display: flex;
   flex-direction: column;
 }
-.select--1::after {
+.form__select--1::after {
   content: '';
   background-image: url('https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/0bc96ced-05d8-4dca-9ac2-24f370718e9c.png');
   background-position: center;
@@ -178,26 +178,26 @@ body {
 .input--2 .form__cut {
   width: 128px;
 }
-.input--3 .form__cut {
+.form__input--3 .form__cut {
   width: 214px;
 }
-.input--4 .form__cut {
+.form__input--4 .form__cut {
   width: 150px;
 }
-.input--5 .form__cut {
+.form__input--5 .form__cut {
   width: 226px;
 }
 /* Select */
-.select--1 .form__cut {
+.form__select--1 .form__cut {
   width: 198px;
 }
-.select--2 .form__cut {
+.form__select--2 .form__cut {
   width: 128px;
 }
-.select--3 .form__cut {
+.form__select--3 .form__cut {
   width: 168px;
 }
-.select--1 .form__placeholder {
+.form__select--1 .form__placeholder {
   top: 18px;
 }
 /*  */
@@ -209,10 +209,10 @@ body {
   margin-top: 8px;
   z-index: 2;
 } 
-.error .form__input, .error .form__select {
+.form__error .form__input, .form__error .form__select {
   outline: 1px solid var(--roxo);
 }
-.error .form__placeholder {
+.form__error .form__placeholder {
   color: var(--roxo);
 }
 </style>
@@ -235,7 +235,7 @@ body {
           <label for="valEmail" class="form__placeholder">Digite aqui seu e-mail</label>
         </div>
 
-        <div class="form__inputCtn select--1">
+        <div class="form__inputCtn form__select--1">
           <select id="valTrabalho" class="form__select" name="" required>
             <option value="" selected disabled></option> <!-- Opção vazia -->
             <option value="socio">Sócio / Diretor</option>
@@ -249,7 +249,7 @@ body {
           <label for="valTrabalho" class="form__placeholder">Selecione a área que você trabalha</label>
         </div>
 
-        <div class="form__inputCtn select--2">
+        <div class="form__inputCtn form__select--2">
           <select id="valCargo" class="form__select" name="" required>
             <option value="" selected disabled></option> <!-- Opção vazia -->
             <option value="socio">Estagiário</option>
@@ -261,25 +261,25 @@ body {
           <label for="valCargo" class="form__placeholder">Selecione o seu cargo</label>
         </div>
       
-        <div class="form__inputCtn input--3">
+        <div class="form__inputCtn form__input--3">
           <input id="valNumero" class="form__input" type="text" placeholder="" />
           <div class="form__cut form__cut-short"></div>
           <label for="valNumero" class="form__placeholder">Digite aqui o seu número para contato</label>
         </div>
 
-        <div class="form__inputCtn input--4">
+        <div class="form__inputCtn form__input--4">
           <input id="valEmpresa" class="form__input" type="text" placeholder="" />
           <div class="form__cut form__cut-short"></div>
           <label for="valEmpresa" class="form__placeholder">Digite aqui a sua empresa</label>
         </div>
 
-        <div class="form__inputCtn input--5">
+        <div class="form__inputCtn form__input--5">
           <input id="valFuncionarios" class="form__input" type="number" placeholder="" />
           <div class="form__cut form__cut-short"></div>
           <label for="valFuncionarios" class="form__placeholder">Quantos funcionários tem sua empresa?</label>
         </div>
 
-        <div class="form__inputCtn select--3">
+        <div class="form__inputCtn form__select--3">
           <select id="valDesafio" class="form__select" name="" required>
             <option value="" selected disabled></option> <!-- Opção vazia -->
             <option value="socio">Estagiário</option>
@@ -340,53 +340,51 @@ const funcDOMContentLoaded = (e) => {
       errorElement.textContent = "";
         
       const container = input.closest(".form__inputCtn");
-      console.log('container', container);
-
 
       if (input.id === "valName" && input.value == '') {
-        container.classList.add('error')
+        container.classList.add('form__error')
         errorElement.textContent = "* Nome é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
       } else if (input.id === "valEmail" && !validateEmail(input.value)) { // input
-        container.classList.add('error')
+        container.classList.add('form__error')
         errorElement.textContent = "* Nome é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
       } else if (input.id === "valTrabalho" && input.value == '') { // Seletor
-        container.classList.add('error')
+        container.classList.add('form__error')
         errorElement.textContent = "* Seu cargo é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
       } else if (input.id === "valCargo"  && input.value == '') { // Seletor
-        container.classList.add('error')
+        container.classList.add('form__error')
         errorElement.textContent = "* Nome é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
       } else if (input.id === "valNumero" && validateTelefone(input.value)) { // input
-        container.classList.add('error')
+        container.classList.add('form__error')
         errorElement.textContent = "* Nome é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
       } else if (input.id === "valEmpresa" && input.value == '') { // input
-        container.classList.add('error')
+        container.classList.add('form__error')
         errorElement.textContent = "* Nome é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
       } else if (input.id === "valFuncionarios" && input.value == '') { // input
-        container.classList.add('error')
+        container.classList.add('form__error')
         errorElement.textContent = "* Nome é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
       } else if (input.id === "valDesafio" && input.value == '') { // Seletor
-        container.classList.add('error')
+        container.classList.add('form__error')
         errorElement.textContent = "* Seu cargo é obrigatório";
         errorElement.style.display = "block";
         isValid = false;
       }
 
       input.addEventListener('click', () => {
-        container.classList.remove('error')
+        container.classList.remove('form__error')
         errorElement.style.display = 'none'
       }) // Remove o erro ao clicar novamente no input
 
