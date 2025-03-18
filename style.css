@@ -88,7 +88,7 @@ input[type=number] {
   display: flex;
   flex-direction: column;
 }
-.form__select--1::after {
+.form__select--arrow::after {
   content: '';
   background-image: url('https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/0bc96ced-05d8-4dca-9ac2-24f370718e9c.png');
   background-position: center;
