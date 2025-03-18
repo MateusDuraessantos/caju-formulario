@@ -30,7 +30,7 @@ body {
   width: 400px;
   border-radius: 20px;
   border-width: 1px;
-  gap: 10px;
+  gap: 16px;
   padding: 30px;
   z-index: 1;
 }
@@ -170,7 +170,6 @@ input[type=number] {
   font-size: 10px;
   color: #4D4D4D;
   text-align: center;
-  margin-top: 4px;
 }
 .input--1 .form__cut {
   width: 122px;
@@ -264,6 +263,16 @@ input[type="radio"]:checked ~ .radio-custom {
 }
 .radio-label:hover .radio-custom {
   border-color: var(--red);
+}
+.form__submit--ctn {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+@media screen and(max-width: 1000px) {
+  form {
+    width: 100%;
+  }
 }
 @media screen and(max-width: 400px) {
   .form__input {

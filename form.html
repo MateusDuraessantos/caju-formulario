@@ -5,6 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
 <link rel="stylesheet" href="style.css">
+
+
+<meta property="og:description" content="Garanta a conformidade da sua empresa com a NR-1 e proteja seus colaboradores!" />
+<meta property="og:image" content="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/0d93b1cb-ce89-4f87-9e7b-868716ed40cd.png" />
+<meta property="og:url" content="" />
+<meta property="og:type" content="website" />
+<link rel="shortcut icon" href="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/0d93b1cb-ce89-4f87-9e7b-868716ed40cd.png" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Google Tag Manager -->
+<script>(function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-MSKBQ9FX');</script>
+<!-- End Google Tag Manager -->
+
+
 </head>
 <body>
   <div class="form">
@@ -12,19 +33,19 @@
     <div class="form__ctn">
 
         <div class="form__inputCtn input--1">
-          <input id="valName" class="form__input" type="text" placeholder="" />
+          <input type="text" id="nome" name="nome" class="form__input" placeholder="" required />
           <div class="form__cut"></div>
-          <label for="valName" class="form__placeholder">Digite aqui seu nome</label>
+          <label for="nome" class="form__placeholder">Digite aqui seu nome</label>
         </div>
 
         <div class="form__inputCtn input--2">
-          <input id="valEmail" class="form__input" type="text" placeholder="" />
+          <input type="email" id="email" name="email" class="form__input" placeholder="" required />
           <div class="form__cut"></div>
-          <label for="valEmail" class="form__placeholder">Digite aqui seu e-mail</label>
+          <label for="email" class="form__placeholder">Digite aqui seu e-mail</label>
         </div>
 
         <div class="form__inputCtn form__select--1 form__select--arrow">
-          <select id="valTrabalho" class="form__select" name="" required>
+          <select id="valTrabalho" name="valTrabalho" class="form__select" name="" required>
             <option value="" selected disabled></option> <!-- Opção vazia -->
             <option value="socio">Sócio / Diretor</option>
             <option value="gerente">Gerente / Coordenador(a)</option>
@@ -38,37 +59,39 @@
         </div>
 
         <div class="form__inputCtn form__select--2 form__select--arrow">
-          <select id="valCargo" class="form__select" name="" required>
+          <select id="cargo" name="cargo" class="form__select" name="" required>
             <option value="" selected disabled></option> <!-- Opção vazia -->
-            <option value="socio">Estagiário</option>
-            <option value="socio">Junior</option>
-            <option value="socio">Pleno</option>
-            <option value="socio">Senior</option>
+            <option value="Estagiário">Estagiario</option>
+            <option value="Assistente">Assistente</option>
+            <option value="Analista">Analista</option>
+            <option value="Coordenador/Gerente">Coordenador/Gerente</option>
+            <option value="Sócio/Diretor">Socio/Diretor</option>
+            <option value="Outro">Outro</option>
           </select>
           <div class="form__cut"></div>
-          <label for="valCargo" class="form__placeholder">Selecione o seu cargo</label>
+          <label for="cargo" class="form__placeholder">Selecione o seu cargo</label>
         </div>
       
         <div class="form__inputCtn form__input--3">
-          <input id="valNumero" class="form__input" type="text" placeholder="" />
+          <input type="tel" id="telefone" name="telefone" class="form__input" placeholder="" required oninput="formatarTelefone(this)"/>
           <div class="form__cut form__cut-short"></div>
-          <label for="valNumero" class="form__placeholder">Digite aqui o seu número para contato</label>
+          <label for="telefone" class="form__placeholder">Digite aqui o seu número para contato</label>
         </div>
 
         <div class="form__inputCtn form__input--4">
-          <input id="valEmpresa" class="form__input" type="text" placeholder="" />
+          <input id="empresa" name="empresa" class="form__input" type="text" placeholder="" required />
           <div class="form__cut form__cut-short"></div>
-          <label for="valEmpresa" class="form__placeholder">Digite aqui a sua empresa</label>
+          <label for="empresa" class="form__placeholder">Digite aqui a sua empresa</label>
         </div>
 
         <div class="form__inputCtn form__input--5">
-          <input id="valFuncionarios" class="form__input" type="number" placeholder="" />
+          <input id="colaboradores" name="empresa" class="form__input" type="number" placeholder="" required />
           <div class="form__cut form__cut-short"></div>
-          <label for="valFuncionarios" class="form__placeholder">Quantos funcionários tem sua empresa?</label>
+          <label for="colaboradores" class="form__placeholder">Quantos funcionários tem sua empresa?</label>
         </div>
 
         <div class="form__inputCtn form__select--3 form__select--arrow">
-          <select id="valDesafio" class="form__select" name="" required>
+          <select id="valDesafio" name="valDesafio" class="form__select" name="" required>
             <option value="" selected disabled></option> <!-- Opção vazia -->
             <option value="socio">Estagiário</option>
             <option value="socio">Junior</option>
@@ -86,12 +109,12 @@
       
       <div style="display: flex; gap: 9px;">
         <label class="radio-label">
-          <input type="radio" name="option" value="1">
+          <input type="radio" name="option_cliente" value="Sim">
           <span class="radio-custom"></span>
           Sim
         </label>
         <label class="radio-label">
-          <input type="radio" name="option" value="2">
+          <input type="radio" name="option_cliente" value="Não">
           <span class="radio-custom"></span>
           Não
         </label>
@@ -100,8 +123,10 @@
       
     </div>
 
-    <button type="text" class="form__submit">Baixar material</button>
-    <p class="form__disclamer">Ao continuar, esteja ciente da política de privacidade da Caju.</p>
+    <div class="form__submit--ctn">
+      <input type="submit" value="Baixar material" id="submitButton" class="form__submit" />
+      <p class="form__disclamer">Ao continuar, esteja ciente da política de privacidade da Caju.</p>
+    </div>
   </div>
 </body>
 
